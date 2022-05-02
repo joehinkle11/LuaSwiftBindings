@@ -19,6 +19,8 @@ Pasted together from [lua4swift](https://github.com/weyhan/lua4swift) and [Lua 5
 
 - `module.modulemap` added
 
+- added `NO_STDLIB_SYSTEM` flag for iOS builds
+
 
 Then there is the `Package.swift` at the root of this repo which glues together the two projects.
   
