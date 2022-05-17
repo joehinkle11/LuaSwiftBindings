@@ -260,6 +260,50 @@ open class VirtualMachine {
         return popValue(-1) as! Function
     }
     
+    func createUncheckedFunction(_ fn: @escaping SwiftFunction) -> Function {
+        let f: @convention(block) (OpaquePointer) -> Int32 = { [weak self] _ in
+            if self == nil { return 0 }
+            let vm = self!
+
+            // build args list
+            let args = Arguments()
+            for _ in 0 ..< vm.stackSize() {
+                let arg = vm.popValue(1)!
+                args.values.append(arg)
+            }
+
+            // call fn
+            switch fn(args) {
+            case .nothing:
+                return 0
+            case .value(let value):
+                if let v = value {
+                    v.push(vm)
+                }
+                else {
+                    Nil().push(vm)
+                }
+                return 1
+            case let .values(values):
+                for value in values {
+                    value.push(vm)
+                }
+                return Int32(values.count)
+            case let .error(error):
+                print("pushing error: \(error)")
+                error.push(vm)
+                lua_error(vm.state)
+                return 0 // uhh, we don't actually get here
+            }
+        }
+        let block: AnyObject = unsafeBitCast(f, to: AnyObject.self)
+        let imp = imp_implementationWithBlock(block)
+
+        let fp = unsafeBitCast(imp, to: lua_CFunction.self)
+        lua_pushcclosure(state, fp, 0)
+        return popValue(-1) as! Function
+    }
+    
     fileprivate func argError(_ expectedType: String, at argPosition: Int) {
         luaL_typeerror(state, Int32(argPosition), expectedType.cString(using: .utf8))
     }
