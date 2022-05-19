@@ -58,6 +58,7 @@ public enum SwiftReturnValue {
 }
 
 public typealias SwiftFunction = (Arguments) -> SwiftReturnValue
+public typealias SwiftFunction2 = ([Value]) -> SwiftReturnValue
 
 open class Arguments {
     

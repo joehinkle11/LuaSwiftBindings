@@ -260,16 +260,16 @@ open class VirtualMachine {
         return popValue(-1) as! Function
     }
     
-    func createUncheckedFunction(_ fn: @escaping SwiftFunction) -> Function {
+    public func createUncheckedFunction(_ fn: @escaping SwiftFunction2) -> Function {
         let f: @convention(block) (OpaquePointer) -> Int32 = { [weak self] _ in
             if self == nil { return 0 }
             let vm = self!
 
             // build args list
-            let args = Arguments()
+            var args: [Value] = []
             for _ in 0 ..< vm.stackSize() {
                 let arg = vm.popValue(1)!
-                args.values.append(arg)
+                args.append(arg)
             }
 
             // call fn
