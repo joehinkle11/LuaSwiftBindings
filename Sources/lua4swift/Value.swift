@@ -40,7 +40,7 @@ public func ==(lhs: StoredValue, rhs: StoredValue) -> Bool {
     
     lhs.push(lhs.vm)
     lhs.push(rhs.vm)
-    let result = lua_compare(lhs.vm.state, -2, -1, LUA_OPEQ) == 1
+    let result = lua_compare_5_4_4(lhs.vm.state, -2, -1, LUA_OPEQ) == 1
     lhs.vm.pop(2)
     
     return result

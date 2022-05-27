@@ -3,7 +3,7 @@ import CLua
 open class Nil: Value, Equatable {
     
     open func push(_ vm: VirtualMachine) {
-        lua_pushnil(vm.state)
+        lua_pushnil_5_4_4(vm.state)
     }
     
     open func kind() -> Kind { return .nil }

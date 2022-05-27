@@ -26,7 +26,7 @@ let package = Package(
         .target(
             name: "CLua",
             path: "Sources/lua-5.4.4/src",
-            cSettings: [.define("NO_STDLIB_SYSTEM", to: "true", .when(platforms: [.iOS, .tvOS, .watchOS, .macCatalyst]))]
+            cxxSettings: [.define("NO_STDLIB_SYSTEM", to: "true", .when(platforms: [.iOS, .tvOS, .watchOS, .macCatalyst]))]
         )
     ]
 )

@@ -3,7 +3,7 @@ import CLua
 extension String: Value {
     
     public func push(_ vm: VirtualMachine) {
-      lua_pushstring(vm.state, self.cString(using: .utf8))
+      lua_pushstring_5_4_4(vm.state, self.cString(using: .utf8))
     }
     
     public func kind() -> Kind { return .string }
