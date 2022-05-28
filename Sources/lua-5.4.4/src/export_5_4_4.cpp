@@ -150,4 +150,7 @@ extern "C" {
     int (luaL_loadstring_5_4_4) (lua_State *L, const char *s) {
         return luaL_loadstring(L, s);
     }
+    int (lua_error_5_4_4) (lua_State *L) {
+        return lua_error(L);
+    }
 }

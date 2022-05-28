@@ -52,6 +52,8 @@ extern "C" {
     void (luaL_setmetatable_5_4_4) (lua_State *L, const char *tname);
     void *(lua_newuserdatauv_5_4_4) (lua_State *L, size_t sz, int nuvalue);
     int (luaL_loadstring_5_4_4) (lua_State *L, const char *s);
+    int (lua_error_5_4_4) (lua_State *L);
+
 #ifdef __cplusplus
 }
 #endif

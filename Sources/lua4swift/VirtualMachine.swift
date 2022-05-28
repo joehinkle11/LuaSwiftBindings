@@ -148,7 +148,7 @@ open class VirtualMachine {
     }
     
     open func createTable(_ sequenceCapacity: Int = 0, keyCapacity: Int = 0) -> Table {
-        lua_createtable(state, Int32(sequenceCapacity), Int32(keyCapacity))
+        lua_createtable_5_4_4(state, Int32(sequenceCapacity), Int32(keyCapacity))
         return popValue(-1) as! Table
     }
     
@@ -248,7 +248,7 @@ open class VirtualMachine {
             case let .error(error):
                 print("pushing error: \(error)")
                 error.push(vm)
-                lua_error(vm.state)
+                lua_error_5_4_4(vm.state)
                 return 0 // uhh, we don't actually get here
             }
         }
@@ -256,7 +256,7 @@ open class VirtualMachine {
         let imp = imp_implementationWithBlock(block)
         
         let fp = unsafeBitCast(imp, to: lua_CFunction.self)
-        lua_pushcclosure(state, fp, 0)
+        lua_pushcclosure_5_4_4(state, fp, 0)
         return popValue(-1) as! Function
     }
     
@@ -292,7 +292,7 @@ open class VirtualMachine {
             case let .error(error):
                 print("pushing error: \(error)")
                 error.push(vm)
-                lua_error(vm.state)
+                lua_error_5_4_4(vm.state)
                 return 0 // uhh, we don't actually get here
             }
         }
