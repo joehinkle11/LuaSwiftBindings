@@ -378,14 +378,14 @@ OP_EXTRAARG/*	Ax	extra (larger) argument for previous opcode	*/
 ** bit 7: instruction is an MM instruction (call a metamethod)
 */
 
-LUAI_DDEC(const lu_byte luaP_opmodes[NUM_OPCODES];)
+LUAI_DDEC(const lu_byte luaP_opmodes_5_4_4[NUM_OPCODES];)
 
-#define getOpMode(m)	(cast(enum OpMode, luaP_opmodes[m] & 7))
-#define testAMode(m)	(luaP_opmodes[m] & (1 << 3))
-#define testTMode(m)	(luaP_opmodes[m] & (1 << 4))
-#define testITMode(m)	(luaP_opmodes[m] & (1 << 5))
-#define testOTMode(m)	(luaP_opmodes[m] & (1 << 6))
-#define testMMMode(m)	(luaP_opmodes[m] & (1 << 7))
+#define getOpMode(m)	(cast(enum OpMode, luaP_opmodes_5_4_4[m] & 7))
+#define testAMode(m)	(luaP_opmodes_5_4_4[m] & (1 << 3))
+#define testTMode(m)	(luaP_opmodes_5_4_4[m] & (1 << 4))
+#define testITMode(m)	(luaP_opmodes_5_4_4[m] & (1 << 5))
+#define testOTMode(m)	(luaP_opmodes_5_4_4[m] & (1 << 6))
+#define testMMMode(m)	(luaP_opmodes_5_4_4[m] & (1 << 7))
 
 /* "out top" (set top for next instruction) */
 #define isOT(i)  \

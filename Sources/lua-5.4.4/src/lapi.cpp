@@ -32,7 +32,7 @@
 
 
 
-const char lua_ident[] =
+const char lua_ident_5_4_4[] =
   "$LuaVersion: " LUA_COPYRIGHT " $"
   "$LuaAuthors: " LUA_AUTHORS " $";
 
